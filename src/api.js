@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('../Router/router');
+const router = require('./Router/router');
 
 // ...
 
