@@ -1,15 +1,15 @@
 const router = require('express').Router();
+// const routerCategoryPost = require('./routerCategoryPost');
+// const routerCategory = require('./routerCategory');
+// const routerBlogsPosts = require('./routerBlogsPosts');
+const routerUser = require('./routerUser');
 
-const usersControllers = require('../controllers/usersControllers');
+router.use('/users', routerUser);
 
-router.get('/users', usersControllers.getAllUsers);
+// router.use('/categoryPost', routerCategoryPost);
 
-router.get('/users/:id', usersControllers.getIdUser);
+// router.use('/category', routerCategory);
 
-// router.post('/users');
-
-// router.put('/users/:id');
-
-// router.delete('/users/:id');
+// router.use('/blogPosts', routerBlogsPosts);
 
 module.exports = router;
