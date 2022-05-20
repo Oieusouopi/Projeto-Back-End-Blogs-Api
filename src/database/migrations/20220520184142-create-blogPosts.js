@@ -19,7 +19,6 @@ module.exports = {
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        field: 'user_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
@@ -29,9 +28,13 @@ module.exports = {
       },
       published: {
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
       },
       updated: {
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
       }
       });
   },

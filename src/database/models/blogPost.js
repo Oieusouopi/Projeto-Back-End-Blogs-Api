@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: 'blogPosts',
-      underscored: true,
     });
   
     BlogPost.associate = (models) => {
