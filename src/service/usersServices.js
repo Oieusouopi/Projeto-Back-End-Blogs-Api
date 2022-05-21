@@ -10,11 +10,19 @@ const getIdUser = async (id) => {
     return userId;
 };
 
-// const postUser = async () => {
-//     const postUser = 
-// };
+const postUser = async (displayName, email, password, image) => {
+    const createUser = await User.create({ displayName, email, password, image });
+    return createUser;
+};
+
+const deleteUser = async (id) => {
+    const userDeleted = await User.destroy({ where: { id } });
+    return userDeleted;
+};
 
 module.exports = {
     getAllUsers,
     getIdUser,
+    postUser,
+    deleteUser,
 };

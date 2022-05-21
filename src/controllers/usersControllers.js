@@ -22,7 +22,29 @@ const getIdUser = async (req, res, next) => {
   }
 };
 
+const postUser = async (req, res, next) => {
+ try {
+   const { displayName, password, email, image } = req.body;
+   const createUser = await usersServices.postUser(displayName, email, password, image);
+   return res.status(httpCode.CREATED).json(createUser);
+ } catch (error) {
+   next(error);
+ }
+};
+
+const deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const userDeleted = await usersServices.deleteUser(id);
+    return res.status(httpCode.NO_CONTENT).json(userDeleted);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
     getAllUsers,
     getIdUser,
+    postUser,
+    deleteUser,
 };

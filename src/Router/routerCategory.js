@@ -1,6 +1,8 @@
 const routerCategory = require('express').Router();
 
-routerCategory.get('/');
+const categoriesControllers = require('../controllers/categoriesControllers');
+
+routerCategory.get('/', categoriesControllers.getAllCategories);
 
 routerCategory.get('/:id');
 
