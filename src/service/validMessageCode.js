@@ -1,3 +1,3 @@
-const validMessageCode = (code, message) => ({ message, code });
+const validMessageCode = (code, message) => ({ code, message });
 
 module.exports = validMessageCode;

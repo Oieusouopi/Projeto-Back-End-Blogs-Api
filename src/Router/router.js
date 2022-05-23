@@ -3,6 +3,9 @@ const router = require('express').Router();
 const routerCategory = require('./routerCategory');
 // const routerBlogsPosts = require('./routerBlogsPosts');
 const routerUser = require('./routerUser');
+const routerLogin = require('./routerLogin');
+
+router.use('/login', routerLogin);
 
 router.use('/user', routerUser);
 
