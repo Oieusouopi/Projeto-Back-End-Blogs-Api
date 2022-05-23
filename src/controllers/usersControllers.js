@@ -25,8 +25,8 @@ const getIdUser = async (req, res, next) => {
 const postUser = async (req, res, next) => {
  try {
    const { displayName, password, email, image } = req.body;
-   const createUser = await usersServices.postUser(displayName, email, password, image);
-   return res.status(httpCode.CREATED).json(createUser);
+   const token = await usersServices.postUser(displayName, email, password, image);
+   return res.status(httpCode.CREATED).json({ token });
  } catch (error) {
    next(error);
  }
