@@ -8,17 +8,23 @@ require('dotenv').config();
 const secret = process.env.JWT_SECRET;
 
 const validToken = (token) => {
-  if (token === null) throw validMessageCode(httpCode.UNAUTHORIZED, message.TOKEN_NOT_FOUND);
+  if (!token) throw validMessageCode(httpCode.UNAUTHORIZED, message.TOKEN_NOT_FOUND);
+};
+
+const validUser = (user) => {
+ if (!user) throw validMessageCode(httpCode.UNAUTHORIZED, message.EXPERID_INVALID_TOKEN);
 };
 
 const validateJWT = async (req, __res, next) => {
   try {
-    // console.log(req.headers.authorization);
     const token = req.headers.authorization;
     validToken(token);
-    const newToken = token.split('Bearer ').join('');
-    const decoded = jwt.verify(newToken, secret);
+    const decoded = jwt.verify(token, secret, (error, messageDecoded) => {
+      if (error) throw validMessageCode(httpCode.UNAUTHORIZED, message.EXPERID_INVALID_TOKEN);
+      return messageDecoded;
+    });
     const user = await User.findOne({ where: { displayName: decoded.data.displayName } });
+    validUser(user);
     req.user = user;
     next();
   } catch (error) {
