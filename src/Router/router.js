@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const routerCategoryPost = require('./routerCategoryPost');
+const routerBlogsPosts = require('./routerCategoryPost');
 const routerCategory = require('./routerCategory');
 // const routerBlogsPosts = require('./routerBlogsPosts');
 const routerUser = require('./routerUser');
@@ -9,7 +9,7 @@ router.use('/login', routerLogin);
 
 router.use('/user', routerUser);
 
-// router.use('/categoryPost', routerCategoryPost);
+router.use('/post', routerBlogsPosts);
 
 router.use('/categories', routerCategory);
 
