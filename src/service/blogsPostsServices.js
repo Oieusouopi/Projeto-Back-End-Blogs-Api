@@ -30,13 +30,19 @@ const allBlogsPosts = async () => {
     const getPostsBlogs = await BlogPost.findAll({
         include: [
             { model: User, as: 'users' },
-            { model: Category, as: 'categories' },
+            // { model: Category, as: 'categories', through: { attributes: { exclude: ['PostCategory'] } } },
         ],
     });
     return getPostsBlogs;
 };
 
+const idPostsBlogs = async (id) => {
+    const getPostBlogs = await BlogPost.findPk({ id });
+    return getPostBlogs;
+};
+
 module.exports = {
     postBlogCreation,
     allBlogsPosts,
+    idPostsBlogs,
 };
