@@ -1,5 +1,6 @@
 const { BlogPost } = require('../database/models');
 const { Category } = require('../database/models');
+const { User } = require('../database/models');
 const httpCode = require('../helpers/httpCode');
 const message = require('../helpers/message');
 const postsCategoriesServices = require('./postsCategoriesServices');
@@ -25,6 +26,17 @@ const postBlogCreation = async (title, content, userId, categoryIds) => {
     return newBlogPost;
 };
 
+const allBlogsPosts = async () => {
+    const getPostsBlogs = await BlogPost.findAll({
+        include: [
+            { model: User, as: 'users' },
+            { model: Category, as: 'categories' },
+        ],
+    });
+    return getPostsBlogs;
+};
+
 module.exports = {
     postBlogCreation,
+    allBlogsPosts,
 };

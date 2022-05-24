@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const routerBlogsPosts = require('./routerCategoryPost');
+const routerBlogsPosts = require('./routerBlogPosts');
 const routerCategory = require('./routerCategory');
-// const routerBlogsPosts = require('./routerBlogsPosts');
 const routerUser = require('./routerUser');
 const routerLogin = require('./routerLogin');
 
@@ -12,7 +11,5 @@ router.use('/user', routerUser);
 router.use('/post', routerBlogsPosts);
 
 router.use('/categories', routerCategory);
-
-// router.use('/blogPosts', routerBlogsPosts);
 
 module.exports = router;

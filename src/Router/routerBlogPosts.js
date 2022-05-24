@@ -1,16 +1,16 @@
-const routerPostCategory = require('express').Router();
+const routerBlogPosts = require('express').Router();
 // const postsCategoriesControllers = require('../controllers/postsCategoriesControllers');
 const blogsPostsControllers = require('../controllers/blogsPostsControllers');
 const validateJWT = require('../middleware/validateJWT');
 
-// routerPostCategory.get('/');
+routerBlogPosts.get('/', validateJWT, blogsPostsControllers.allBlogsPosts);
 
 // routerPostCategory.get('/:id');
 
 // routerPostCategory.put('/:id');
 
-routerPostCategory.post('/', validateJWT, blogsPostsControllers.postBlogCreation);
+routerBlogPosts.post('/', validateJWT, blogsPostsControllers.postBlogCreation);
 
 // routerPostCategory.delete('/:id');
 
-module.exports = routerPostCategory;
+module.exports = routerBlogPosts;
