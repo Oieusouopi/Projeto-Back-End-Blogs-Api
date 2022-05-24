@@ -9,8 +9,13 @@ const getAllUsers = async () => {
     return users;
 };
 
+const validUserExist = (user) => {
+  if (!user) throw validMessageCode(httpCode.NOT_FOUND, message.USER_NOT_EXIST);
+};
+
 const getIdUser = async (id) => {
-    const userId = await User.findByPk(id);
+    const userId = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+    validUserExist(userId);
     return userId;
 };
 
@@ -24,7 +29,6 @@ const validEmail = (email) => {
     const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const test = regexEmail.test(email);
     if (!test) throw validMessageCode(httpCode.BAD_REQUEST, message.EMAIL_INVALID);
-    // const user = await User.findOne({ where: { email } });
 };
 
 const validUser = (user) => {

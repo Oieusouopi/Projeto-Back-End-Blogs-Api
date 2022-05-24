@@ -5,7 +5,7 @@ const validateJWT = require('../middleware/validateJWT');
 
 routerUser.get('/', validateJWT, usersControllers.getAllUsers);
 
-routerUser.get('/:id', usersControllers.getIdUser);
+routerUser.get('/:id', validateJWT, usersControllers.getIdUser);
 
 // routerUser.put('/:id');
 
