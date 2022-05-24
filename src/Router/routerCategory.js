@@ -3,7 +3,7 @@ const routerCategory = require('express').Router();
 const categoriesControllers = require('../controllers/categoriesControllers');
 const validateJWT = require('../middleware/validateJWT');
 
-routerCategory.get('/', categoriesControllers.getAllCategories);
+routerCategory.get('/', validateJWT, categoriesControllers.getAllCategories);
 
 routerCategory.get('/:id');
 
