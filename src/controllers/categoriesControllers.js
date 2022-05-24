@@ -11,6 +11,17 @@ const getAllCategories = async (req, res, next) => {
     }
 };
 
+const postCategories = async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const createCategory = await categoriesServices.postCategories(name);
+    res.status(httpCode.CREATED).json(createCategory);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
     getAllCategories,
+    postCategories,
 };

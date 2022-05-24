@@ -11,7 +11,7 @@ router.use('/user', routerUser);
 
 // router.use('/categoryPost', routerCategoryPost);
 
-router.use('/category', routerCategory);
+router.use('/categories', routerCategory);
 
 // router.use('/blogPosts', routerBlogsPosts);
 
