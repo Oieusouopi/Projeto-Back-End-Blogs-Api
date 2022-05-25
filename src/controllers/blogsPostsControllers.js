@@ -22,7 +22,18 @@ const allBlogsPosts = async (req, res, next) => {
     }
 };
 
+const getIdBlogsPosts = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const getBlogPost = await blogPostServices.getIdBlogsPosts(id);
+      res.status(httpCode.OK).json(getBlogPost);
+    } catch (error) {
+     next(error);
+    }
+};
+
 module.exports = {
     postBlogCreation,
     allBlogsPosts,
+    getIdBlogsPosts,
 };

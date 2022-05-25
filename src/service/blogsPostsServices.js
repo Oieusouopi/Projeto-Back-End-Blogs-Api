@@ -27,22 +27,32 @@ const postBlogCreation = async (title, content, userId, categoryIds) => {
 };
 
 const allBlogsPosts = async () => {
-    const getPostsBlogs = await BlogPost.findAll({
+    const getBlogsPosts = await BlogPost.findAll({
         include: [
-            { model: User, as: 'users' },
-            // { model: Category, as: 'categories', through: { attributes: { exclude: ['PostCategory'] } } },
+            { model: User, as: 'user', attributes: { exclude: ['password'] } },
+            { model: Category, as: 'categories' },
         ],
     });
-    return getPostsBlogs;
+    return getBlogsPosts;
 };
 
-const idPostsBlogs = async (id) => {
-    const getPostBlogs = await BlogPost.findPk({ id });
-    return getPostBlogs;
+const validBlogPostExist = (blogPost) => {
+    if (!blogPost) throw validMessageCode(httpCode.NOT_FOUND, message.POST_NOT_EXIST);
+};
+
+const getIdBlogsPosts = async (id) => {
+    const getPostBlog = await BlogPost.findByPk(id, {
+        include: [
+            { model: User, as: 'user', attributes: { exclude: ['password'] } },
+            { model: Category, as: 'categories' },
+        ],
+    });
+    validBlogPostExist(getPostBlog);
+    return getPostBlog;
 };
 
 module.exports = {
     postBlogCreation,
     allBlogsPosts,
-    idPostsBlogs,
+    getIdBlogsPosts,
 };

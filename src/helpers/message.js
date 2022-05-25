@@ -11,6 +11,7 @@ const message = {
     NAME_REQUIRED: '"name" is required',
     CATEGORYID_NOT_FOUND: '"categoryIds" not found',
     UNAUTHORIZED_UER: 'Unauthorized user',
+    POST_NOT_EXIST: 'Post does not exist',
 };
 
 module.exports = message;

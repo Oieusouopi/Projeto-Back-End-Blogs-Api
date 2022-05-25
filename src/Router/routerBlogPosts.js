@@ -5,7 +5,7 @@ const validateJWT = require('../middleware/validateJWT');
 
 routerBlogPosts.get('/', validateJWT, blogsPostsControllers.allBlogsPosts);
 
-// routerPostCategory.get('/:id');
+routerBlogPosts.get('/:id', validateJWT, blogsPostsControllers.getIdBlogsPosts);
 
 // routerPostCategory.put('/:id');
 
