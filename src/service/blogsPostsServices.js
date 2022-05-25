@@ -51,8 +51,27 @@ const getIdBlogsPosts = async (id) => {
     return getPostBlog;
 };
 
+const validUserAuthorized = (userId, id) => {
+  if (userId !== id) throw validMessageCode(httpCode.UNAUTHORIZED, message.UNAUTHORIZED_UER);
+};
+
+const validEmptyForPut = (title, content) => {
+    if (!title || !content) throw validMessageCode(httpCode.BAD_REQUEST, message.FIELDS_EMPTY);
+};
+
+const putIdBlogPost = async (id, title, content, userId) => {
+    validEmptyForPut(title, content);
+    const alterBlogPost = await getIdBlogsPosts(id);
+    validUserAuthorized(userId, alterBlogPost.user.id);
+    alterBlogPost.set({ title, content });
+    await alterBlogPost.save();
+    const newBlogPost = await getIdBlogsPosts(id);
+    return newBlogPost;
+};
+
 module.exports = {
     postBlogCreation,
     allBlogsPosts,
     getIdBlogsPosts,
+    putIdBlogPost,
 };

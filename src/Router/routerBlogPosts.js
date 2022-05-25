@@ -7,7 +7,7 @@ routerBlogPosts.get('/', validateJWT, blogsPostsControllers.allBlogsPosts);
 
 routerBlogPosts.get('/:id', validateJWT, blogsPostsControllers.getIdBlogsPosts);
 
-// routerPostCategory.put('/:id');
+routerBlogPosts.put('/:id', validateJWT, blogsPostsControllers.putIdBlogPost);
 
 routerBlogPosts.post('/', validateJWT, blogsPostsControllers.postBlogCreation);
 

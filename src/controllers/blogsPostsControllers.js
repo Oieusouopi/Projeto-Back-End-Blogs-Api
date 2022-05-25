@@ -32,8 +32,21 @@ const getIdBlogsPosts = async (req, res, next) => {
     }
 };
 
+const putIdBlogPost = async (req, res, next) => {
+    try {
+        const userId = req.user.id;
+        const { id } = req.params;
+        const { title, content } = req.body;
+        const newBlogPost = await blogPostServices.putIdBlogPost(id, title, content, userId);
+        res.status(httpCode.OK).json(newBlogPost);
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     postBlogCreation,
     allBlogsPosts,
     getIdBlogsPosts,
+    putIdBlogPost,
 };
