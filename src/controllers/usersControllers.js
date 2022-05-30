@@ -42,9 +42,20 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
+const deleteMeUser = async (req, res, next) => {
+  try {
+    const { id } = req.user;
+    await usersServices.deleteMeUser(id);
+    return res.status(httpCode.NO_CONTENT).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
     getAllUsers,
     getIdUser,
     postUser,
     deleteUser,
+    deleteMeUser,
 };
