@@ -11,6 +11,6 @@ routerBlogPosts.put('/:id', validateJWT, blogsPostsControllers.putIdBlogPost);
 
 routerBlogPosts.post('/', validateJWT, blogsPostsControllers.postBlogCreation);
 
-// routerPostCategory.delete('/:id');
+routerBlogPosts.delete('/:id', validateJWT, blogsPostsControllers.deleteBlogPost);
 
 module.exports = routerBlogPosts;

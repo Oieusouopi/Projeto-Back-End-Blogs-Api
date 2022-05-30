@@ -1,6 +1,4 @@
-const { BlogPost } = require('../database/models');
-const { Category } = require('../database/models');
-const { User } = require('../database/models');
+const { BlogPost, PostCategory, Category, User } = require('../database/models');
 const httpCode = require('../helpers/httpCode');
 const message = require('../helpers/message');
 const postsCategoriesServices = require('./postsCategoriesServices');
@@ -69,9 +67,21 @@ const putIdBlogPost = async (id, title, content, userId) => {
     return newBlogPost;
 };
 
+const deleteBlogPost = async (id, userId) => {
+    const userAuthorized = await getIdBlogsPosts(id);
+    validUserAuthorized(userId, userAuthorized.user.id);
+    await BlogPost.destroy({ where: { id } }, {
+        include: [
+            { model: PostCategory, as: 'postscategories' },
+        ],
+    });
+    await userAuthorized.save();
+};
+
 module.exports = {
     postBlogCreation,
     allBlogsPosts,
     getIdBlogsPosts,
     putIdBlogPost,
+    deleteBlogPost,
 };

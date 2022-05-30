@@ -44,9 +44,21 @@ const putIdBlogPost = async (req, res, next) => {
     }
 };
 
+const deleteBlogPost = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const userId = req.user.id;
+      await blogPostServices.deleteBlogPost(id, userId);
+      return res.status(httpCode.NO_CONTENT).end();
+    } catch (error) {
+     next(error);   
+    }
+};
+
 module.exports = {
     postBlogCreation,
     allBlogsPosts,
     getIdBlogsPosts,
     putIdBlogPost,
+    deleteBlogPost,
 };
