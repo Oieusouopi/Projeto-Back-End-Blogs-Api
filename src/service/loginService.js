@@ -17,7 +17,6 @@ const validUser = (user, password) => {
 
 const loginService = async (email, password) => {
     validEmpty(email, password);
-    console.log(User);
     const user = await User.findOne({ where: { email } });
     validUser(user, password);
     const token = createToken(user);

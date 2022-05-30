@@ -1,5 +1,4 @@
 const routerBlogPosts = require('express').Router();
-// const postsCategoriesControllers = require('../controllers/postsCategoriesControllers');
 const blogsPostsControllers = require('../controllers/blogsPostsControllers');
 const validateJWT = require('../middleware/validateJWT');
 
