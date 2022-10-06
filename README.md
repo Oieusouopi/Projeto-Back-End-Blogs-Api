@@ -5,7 +5,7 @@ Qualquer problema me mande um email rafasc866@gmail.com
 ## Sobre
 
 Este é um projeto para utilizar as tecnologias aprendidas na trybe no módulo de back-end, este projeto
-cria um CRUD de uma simulação de um banco de dados de um blog onde temos os módelos de Usuarios(Users), categorias(Category),posts dos blogs (PostBlogs)
+cria um CRUD um banco de dados de um blog onde temos os módelos de Usuarios(Users), categorias(Category),posts dos blogs (PostBlogs)
 e a junção de categorais com o posts dos blogs (PostCategory).
 
 ## Tecnlogias utilizadas
